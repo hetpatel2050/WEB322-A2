@@ -1,27 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Climate Solutions</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
-    <nav class="navbar bg-base-200">
-        <a href="/" class="text-xl font-bold">Climate Solutions</a>
-        <a href="/about">About</a>
-        <div class="dropdown">
-            <summary class="btn">Sector</summary>
-            <ul class="dropdown-content">
-                <li><a href="/solutions/projects?sector=energy">Energy</a></li>
-                <li><a href="/solutions/projects?sector=transport">Transport</a></li>
-                <li><a href="/solutions/projects?sector=agriculture">Agriculture</a></li>
-            </ul>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-green-600">Climate Solutions</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="/about" class="hover:text-green-600">About</a>
+
+                <!-- Dropdown Menu -->
+                <div class="relative">
+                    <button id="dropdown-btn" class="px-4 py-2 bg-green-600 text-white rounded-md focus:outline-none">
+                        Sector
+                    </button>
+                    <ul id="dropdown-menu" class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md hidden">
+                        <li><a href="/solutions/projects?sector=energy" class="block px-4 py-2 hover:bg-green-100">Energy</a></li>
+                        <li><a href="/solutions/projects?sector=transport" class="block px-4 py-2 hover:bg-green-100">Transport</a></li>
+                        <li><a href="/solutions/projects?sector=agriculture" class="block px-4 py-2 hover:bg-green-100">Agriculture</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden flex flex-col items-center space-y-4 mt-4">
+            <a href="/about" class="hover:text-green-600">About</a>
+            <div class="relative">
+                <button id="mobile-dropdown-btn" class="px-4 py-2 bg-green-600 text-white rounded-md focus:outline-none">
+                    Sector
+                </button>
+                <ul id="mobile-dropdown-menu" class="mt-2 w-48 bg-white shadow-lg rounded-md hidden">
+                    <li><a href="/solutions/projects?sector=energy" class="block px-4 py-2 hover:bg-green-100">Energy</a></li>
+                    <li><a href="/solutions/projects?sector=transport" class="block px-4 py-2 hover:bg-green-100">Transport</a></li>
+                    <li><a href="/solutions/projects?sector=agriculture" class="block px-4 py-2 hover:bg-green-100">Agriculture</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <div class="container mx-auto text-center p-10">
-        <h1 class="text-3xl font-bold">Explore Climate Projects</h1>
-        <p class="mt-4">Learn about solutions to climate change.</p>
-        <a href="/solutions/projects" class="btn btn-primary mt-4">View Projects</a>
+        <h1 class="text-4xl font-extrabold text-green-700">Explore Climate Projects</h1>
+        <p class="mt-4 text-lg text-gray-700">Learn about solutions to climate change.</p>
+        <a href="/solutions/projects" class="mt-6 inline-block px-6 py-3 bg-green-600 text-white rounded-md text-lg shadow-md hover:bg-green-700">View Projects</a>
     </div>
+
+    <!-- JavaScript for Dropdown & Mobile Menu -->
+    <script>
+        // Toggle Mobile Menu
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+
+        // Toggle Desktop Dropdown
+        document.getElementById("dropdown-btn").addEventListener("click", function () {
+            document.getElementById("dropdown-menu").classList.toggle("hidden");
+        });
+
+        // Toggle Mobile Dropdown
+        document.getElementById("mobile-dropdown-btn").addEventListener("click", function () {
+            document.getElementById("mobile-dropdown-menu").classList.toggle("hidden");
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function(event) {
+            if (!document.getElementById("dropdown-btn").contains(event.target) &&
+                !document.getElementById("dropdown-menu").contains(event.target)) {
+                document.getElementById("dropdown-menu").classList.add("hidden");
+            }
+
+            if (!document.getElementById("mobile-dropdown-btn").contains(event.target) &&
+                !document.getElementById("mobile-dropdown-menu").contains(event.target)) {
+                document.getElementById("mobile-dropdown-menu").classList.add("hidden");
+            }
+        });
+    </script>
+
 </body>
 </html>

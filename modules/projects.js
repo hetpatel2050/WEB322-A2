@@ -1,43 +1,46 @@
-const projectData = require("../data/projectData.json");
-const sectorData = require("../data/sectorData.json");
+const fs = require('fs');
+const path = require('path');
+
+const projectDataPath = path.join(__dirname, '../data/projectData.json');
+const sectorDataPath = path.join(__dirname, '../data/sectorData.json');
 
 let projects = [];
 
-function initialize() {
+async function initialize() {
     return new Promise((resolve, reject) => {
         try {
+            const projectData = JSON.parse(fs.readFileSync(projectDataPath, 'utf8'));
+            const sectorData = JSON.parse(fs.readFileSync(sectorDataPath, 'utf8'));
             projects = projectData.map(project => {
                 const sector = sectorData.find(s => s.id === project.sector_id);
-                return { ...project, sector: sector ? sector.sector_name : "Unknown" };
+                return { ...project, sector: sector ? sector.sector_name : 'Unknown' };
             });
             resolve();
         } catch (error) {
-            reject("Error initializing project data.");
+            reject("Unable to load project data.");
         }
     });
 }
 
-
 function getAllProjects() {
     return new Promise((resolve, reject) => {
-        projects.length > 0 ? resolve(projects) : reject("No projects found.");
+        if (projects.length > 0) resolve(projects);
+        else reject("No projects available.");
     });
 }
 
-
-function getProjectById(projectId) {
+function getProjectById(id) {
     return new Promise((resolve, reject) => {
-        const project = projects.find(p => p.id === parseInt(projectId));
-        project ? resolve(project) : reject(`Project with ID ${projectId} not found.`);
+        const project = projects.find(p => p.id === id);
+        project ? resolve(project) : reject("Project not found.");
     });
 }
 
 function getProjectsBySector(sector) {
     return new Promise((resolve, reject) => {
         const filteredProjects = projects.filter(p => p.sector.toLowerCase().includes(sector.toLowerCase()));
-        filteredProjects.length > 0 ? resolve(filteredProjects) : reject(`No projects found in sector '${sector}'.`);
+        filteredProjects.length > 0 ? resolve(filteredProjects) : reject("No projects found in this sector.");
     });
 }
-
 
 module.exports = { initialize, getAllProjects, getProjectById, getProjectsBySector };

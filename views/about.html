@@ -2,17 +2,68 @@
 <html lang="en">
 <head>
     <title>About</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
-    <nav class="navbar bg-base-200">
-        <a href="/" class="text-xl font-bold">Climate Solutions</a>
-        <a class="active" href="/about">About</a>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-green-600">Climate Solutions</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6">
+                <a class="hover:text-green-600" href="/">Home</a>
+                <a class="text-green-600 font-semibold border-b-2 border-green-600" href="/about">About</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden flex flex-col items-center space-y-4 mt-4">
+            <a class="hover:text-green-600" href="/">Home</a>
+            <a class="text-green-600 font-semibold border-b-2 border-green-600" href="/about">About</a>
+        </div>
     </nav>
 
+    <!-- About Section -->
     <div class="container mx-auto text-center p-10">
-        <h1 class="text-3xl font-bold">About Me</h1>
-        <p class="mt-4">I am a student passionate about technology and climate solutions.</p>
+        <h1 class="text-4xl font-extrabold text-green-700">About Me</h1>
+        <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">
+            I am a student passionate about technology and climate solutions. Exploring ways to mitigate climate change through innovative solutions drives my learning and growth.
+        </p>
+
+        <!-- Responsive About Section -->
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <!-- Image Section -->
+            <div class="flex justify-center">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=2662&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                     alt="About Me" 
+                     class="rounded-lg shadow-md w-80 md:w-96">
+            </div>
+
+            <!-- Text Section -->
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl font-semibold text-green-700">Who Am I?</h2>
+                <p class="mt-4 text-lg text-gray-700">
+                    A tech enthusiast exploring solutions for a greener planet. From programming to sustainable innovation, I aim to contribute towards a better future.
+                </p>
+            </div>
+        </div>
     </div>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+
 </body>
 </html>

@@ -1,66 +1,53 @@
-// server.js
-/********************************************************************************
-*  WEB322 – Assignment 03 
-*  
-*  I declare that this assignment is my own work in accordance with Seneca's 
-*  Academic Integrity Policy: 
-*  
-*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html 
-*  
-*  Name: [Your Name]    Student ID: [Your ID]    Date: [Submission Date] 
-********************************************************************************/
-
 const express = require('express');
 const path = require('path');
 const projectData = require('./modules/projects');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // Serve static assets
 app.use(express.static('public'));
 
 // Initialize project data before starting server
 projectData.initialize().then(() => {
+    
     // Home Route
     app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, 'views/home.html'));
+        res.render('home', { page: '/' });
     });
-    
+
     // About Page
     app.get('/about', (req, res) => {
-        res.sendFile(path.join(__dirname, 'views/about.html'));
+        res.render('about', { page: '/about' });
     });
 
     // Get all projects or filter by sector
-    app.get('/solutions/projects', (req, res) => {
-        const sector = req.query.sector;
-        if (sector) {
-            projectData.getProjectsBySector(sector).then(data => {
-                res.json(data);
-            }).catch(err => {
-                res.status(404).json({ error: err });
-            });
-        } else {
-            projectData.getAllProjects().then(data => {
-                res.json(data);
-            }).catch(err => {
-                res.status(404).json({ error: err });
-            });
+    app.get('/solutions/projects', async (req, res) => {
+        try {
+            const sector = req.query.sector;
+            const projects = sector ? await projectData.getProjectsBySector(sector) : await projectData.getAllProjects();
+            res.render('projects', { projects, page: '/solutions/projects' });
+        } catch (error) {
+            res.status(404).render('404', { error: error, page: '' });
         }
-    });
+    });    
 
     // Get project by ID
-    app.get('/solutions/projects/:id', (req, res) => {
-        projectData.getProjectById(parseInt(req.params.id)).then(data => {
-            res.json(data);
-        }).catch(err => {
-            res.status(404).json({ error: err });
-        });
+    app.get('/solutions/projects/:id', async (req, res) => {
+        try {
+            const project = await projectData.getProjectById(parseInt(req.params.id));
+            res.render('project', { project, page: '' });
+        } catch (error) {
+            res.status(404).render('404', { error: error, page: '' });
+        }
     });
 
     // Custom 404 Page
     app.use((req, res) => {
-        res.status(404).sendFile(path.join(__dirname, 'views/404.html'));
+        res.status(404).render('404', { error: 'Page not found', page: '' });
     });
 
     // Start server

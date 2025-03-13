@@ -1,0 +1,9 @@
+<nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <a href="/" class="text-2xl font-bold text-green-600">Climate Solutions</a>
+        <div class="hidden md:flex space-x-6 items-center">
+            <a href="/about" class="<%= page === '/about' ? 'text-green-600 font-bold' : 'hover:text-green-600' %>">About</a>
+            <a href="/solutions/projects" class="<%= page === '/solutions/projects' ? 'text-green-600 font-bold' : 'hover:text-green-600' %>">View Projects</a>
+        </div>
+    </div>
+</nav>

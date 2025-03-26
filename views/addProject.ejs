@@ -1,0 +1,82 @@
+<%- include('partials/navbar', { page: "/" }) %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <div class="max-w-3xl mx-auto mt-12 px-6">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h1 class="text-3xl font-extrabold text-green-700 mb-6 border-b pb-4">Add New Project</h1>
+
+            <form method="POST" action="/solutions/projects/add" class="space-y-6">
+                
+                <!-- Title -->
+                <div>
+                    <label class="block font-semibold mb-1">Title</label>
+                    <input type="text" name="title" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Project title" />
+                </div>
+
+                <!-- Feature Image -->
+                <div>
+                    <label class="block font-semibold mb-1">Feature Image URL</label>
+                    <input type="text" name="feature_img_url" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="https://example.com/image.jpg" />
+                </div>
+
+                <!-- Summary -->
+                <div>
+                    <label class="block font-semibold mb-1">Short Summary</label>
+                    <textarea name="summary_short" required rows="3" class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Brief overview..."></textarea>
+                </div>
+
+                <!-- Intro -->
+                <div>
+                    <label class="block font-semibold mb-1">Short Introduction</label>
+                    <textarea name="intro_short" required rows="3" class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Introduction to the project..."></textarea>
+                </div>
+
+                <!-- Impact -->
+                <div>
+                    <label class="block font-semibold mb-1">Impact</label>
+                    <textarea name="impact" required rows="4" class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="How does this project make a difference?"></textarea>
+                </div>
+
+                <!-- Source URL -->
+                <div>
+                    <label class="block font-semibold mb-1">Original Source URL</label>
+                    <input type="text" name="original_source_url" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="https://originalsource.com" />
+                </div>
+
+                <!-- Sector Dropdown -->
+                <div>
+                    <label class="block font-semibold mb-1">Sector</label>
+                    <select name="sector_id" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <% sectors.forEach(sector => { %>
+                            <option value="<%= sector.id %>">
+                                <%= sector.sector_name %>
+                            </option>
+                        <% }); %>
+                    </select>
+                </div>
+
+                <!-- Submit -->
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 transition-colors text-white py-3 rounded-lg font-semibold shadow-md">
+                        ➕ Add Project
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -32,9 +32,9 @@
                         <tr class="border-b">
                             <td class="px-4 py-3 text-center"><%= project.title %></td>
                             <td class="px-4 py-3 text-center">
-                                <a href="/solutions/projects?sector=<%= project.sector %>" 
+                                <a href="/solutions/projects?sector=<%= project.Sector.sector_name %>" 
                                    class="px-3 py-1 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-700">
-                                   <%= project.sector %>
+                                   <%= project.Sector.sector_name %>
                                 </a>
                             </td>
                             <td class="px-4 py-3 text-center"><%= project.summary_short %></td>

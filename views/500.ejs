@@ -1,0 +1,16 @@
+<%- include('partials/navbar', { page: "/" }) %>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <body class="bg-gray-100 text-gray-800">
+        <div class="container mx-auto text-center p-16">
+            <h1 class="text-6xl font-extrabold text-red-600">500</h1>
+            <p class="text-xl text-gray-700 mt-4">Oops! Something went wrong on the server.</p>
+            <p class="mt-4 text-red-500 font-semibold">
+                <%= message %>
+            </p>
+            <a href="/"
+                class="mt-6 inline-block px-6 py-3 bg-green-600 text-white rounded-md text-lg shadow-md hover:bg-green-700">Go
+                Home</a>
+        </div>
+    </body>

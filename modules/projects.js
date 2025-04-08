@@ -113,7 +113,7 @@ function addProject(projectData) {
   return new Promise((resolve, reject) => {
     Project.create(projectData)
       .then(() => resolve())
-      .catch((err) => reject(err.errors[0].message));
+      .catch((err) => reject(err.errors ? err.errors[0].message : err.message));
   });
 }
 

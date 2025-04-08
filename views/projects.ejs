@@ -1,0 +1,58 @@
+<%- include('partials/navbar', { page: "/solutions/projects" }) %>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div class="container mx-auto p-10">
+    <!-- Page Header with Sector Filter Links -->
+    <h1 class="text-4xl font-bold text-green-700 mb-6 text-center">Projects</h1>
+
+    <!-- Filter by Sector -->
+    <div class="flex justify-center space-x-4 mb-6">
+        <a href="/solutions/projects" class="px-4 py-2 bg-gray-300 text-gray-800 rounded-md shadow-md hover:bg-gray-400">All</a>
+        <a href="/solutions/projects?sector=Land Sinks" class="px-4 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700">Land Sinks</a>
+        <a href="/solutions/projects?sector=Industry" class="px-4 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700">Industry</a>
+        <a href="/solutions/projects?sector=Transportation" class="px-4 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700">Transportation</a>
+        <a href="/solutions/projects?sector=Electricity" class="px-4 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700">Electricity</a>
+        <a href="/solutions/projects?sector=Food, Agriculture, and Land Use" class="px-4 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700">Food & Agriculture</a>
+    </div>
+
+    <!-- Projects Table -->
+    <div class="overflow-x-auto">
+        <table class="w-full border-collapse bg-white shadow-md rounded-lg">
+            <thead>
+                <tr class="bg-green-600 text-white">
+                    <th class="px-4 py-3">Title</th>
+                    <th class="px-4 py-3">Sector</th>
+                    <th class="px-4 py-3">Summary</th>
+                    <th class="px-4 py-3">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (projects.length > 0) { %>
+                    <% projects.forEach(project => { %>
+                        <tr class="border-b">
+                            <td class="px-4 py-3 text-center"><%= project.title %></td>
+                            <td class="px-4 py-3 text-center">
+                                <a href="/solutions/projects?sector=<%= project.Sector.sector_name %>" 
+                                   class="px-3 py-1 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-700">
+                                   <%= project.Sector.sector_name %>
+                                </a>
+                            </td>
+                            <td class="px-4 py-3 text-center"><%= project.summary_short %></td>
+                            <td class="px-4 py-3 text-center">
+                                <a href="/solutions/projects/<%= project.id %>" 
+                                   class="px-3 py-1 bg-green-500 text-white rounded-md shadow-md hover:bg-green-700">
+                                   Details
+                                </a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-gray-600">No projects found.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+

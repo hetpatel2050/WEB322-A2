@@ -1,0 +1,38 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Navigation Bar -->
+<%- include('partials/navbar', { page: "/about" }) %>
+
+<!-- About Section -->
+<div class="container mx-auto text-center p-10">
+  <h1 class="text-4xl font-extrabold text-green-700">About Me</h1>
+  <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">
+    I am a student passionate about technology and climate solutions. Exploring
+    ways to mitigate climate change through innovative solutions drives my
+    learning and growth.
+  </p>
+
+  <!-- Responsive About Section -->
+  <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+    <!-- Image Section -->
+    <div class="flex justify-center">
+      <img
+        src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=2662&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="About Me"
+        class="rounded-lg shadow-md w-80 md:w-96"
+      />
+    </div>
+
+    <!-- Text Section -->
+    <div class="text-center md:text-left">
+      <h2 class="text-2xl font-semibold text-green-700">Who Am I?</h2>
+      <p class="mt-4 text-lg text-gray-700">
+        My name is Het Patel and I'm currently studying at Seneca Polytechnic.
+      </p>
+      <p class="mt-4 text-lg text-gray-700">
+        A tech enthusiast exploring solutions for a greener planet. From
+        programming to sustainable innovation, I aim to contribute towards a
+        better future.
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<%- include('partials/navbar', { page: "/solutions/projects" }) %>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <div class="min-h-screen bg-gray-100 text-gray-800 py-12 px-6">
+        <!-- Project Container -->
+        <div class="max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-8">
+
+            <!-- Title Section -->
+            <div class="text-center mb-6">
+                <h1 class="text-4xl font-extrabold text-green-700">
+                    <%= project.title %>
+                </h1>
+                <p class="mt-2 text-lg text-gray-600">
+                    Below, you will find detailed information about the project: <%= project.title %>
+                </p>
+            </div>
+
+            <!-- Project Content Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Image Section -->
+                <div>
+                    <img src="<%= project.feature_img_url %>" alt="<%= project.title %>"
+                        class="rounded-lg shadow-md w-full object-cover">
+                </div>
+
+                <!-- Text Content -->
+                <div>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        <%= project.intro_short %>
+                    </p>
+
+                    <h2 class="text-2xl font-semibold text-green-700 mt-6">Impact:</h2>
+                    <p class="text-lg text-gray-700 mt-2 leading-relaxed">
+                        <%= project.impact %>
+                    </p>
+
+                    <!-- Additional Project Information -->
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold text-green-700">Project Benefits:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-lg mt-2">
+                            <li>Helps reduce carbon footprint and combat climate change.</li>
+                            <li>Creates sustainable solutions for future generations.</li>
+                            <li>Encourages economic growth through eco-friendly initiatives.</li>
+                            <li>Promotes biodiversity and ecosystem restoration.</li>
+                        </ul>
+                    </div>
+
+                    <!-- More Information Link -->
+                    <h3 class="mt-6 text-xl font-semibold text-green-700">More Information:</h3>
+                    <a href="<%= project.original_source_url %>"
+                        class="text-blue-600 hover:text-blue-800 underline text-lg font-semibold">
+                        Click here for full project details
+                    </a>
+
+                    <!-- Quote for Inspiration -->
+                    <blockquote class="mt-6 italic text-gray-600 text-lg border-l-4 border-green-500 pl-4">
+                        "To Love is to reach God." <br>
+                        <span class="font-semibold">- Rumi</span>
+                    </blockquote>
+                </div>
+            </div>
+
+            <!-- Return & Edit Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12">
+
+                <!-- Edit Button -->
+                <a href="/solutions/projects/edit/<%= project.id %>"
+                    class="inline-block text-blue-600 hover:text-blue-800 font-medium text-lg transition duration-200 underline underline-offset-2">
+                    ✏️ Edit Project
+                </a>
+
+                <!-- Return Button -->
+                <a href="/solutions/projects"
+                    class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold text-lg shadow-md transition duration-200">
+                    ⬅️ Return to Projects
+                </a>
+
+            </div>
+
+        </div>
+    </div>

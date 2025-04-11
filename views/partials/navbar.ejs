@@ -1,15 +1,31 @@
 <nav class="bg-white shadow-md p-4">
     <div class="container mx-auto flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold text-green-600">Climate Solutions</a>
-        <div class="hidden md:flex space-x-6 items-center">
-            <a href="/solutions/projects"
-                class="<%= page === '/solutions/projects' ? 'text-green-600 font-bold' : 'hover:text-green-600' %>">View
-                Projects</a>
-            <a href="/solutions/addProject"
-                class="<%= page == '/solutions/addProject' ? 'text-green-600 font-bold' : 'hover:text-green-600' %>">Add
-                Project</a>
-            <a href="/about"
-                class="<%= page === '/about' ? 'text-green-600 font-bold' : 'hover:text-green-600' %>">About</a>
-        </div>
+      <a href="/" class="text-2xl font-bold text-green-600">Climate Solutions</a>
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="/solutions/projects"
+           class="<%= page === '/solutions/projects' ? 'text-green-600 font-bold' : 'hover:text-green-600' %>">View Projects</a>
+        <a href="/about"
+           class="<%= page === '/about' ? 'text-green-600 font-bold' : 'hover:text-green-600' %>">About</a>
+  
+        <% if (session.user) { %>
+          <details class="relative">
+            <summary class="cursor-pointer">Account: <%= session.user.userName %></summary>
+            <ul class="absolute right-0 bg-white shadow-md rounded-md mt-1 w-48 z-10">
+              <li><a class="block px-4 py-2 hover:bg-gray-100 <%= page === '/solutions/addProject' ? 'font-bold' : '' %>" href="/solutions/addProject">Add Project</a></li>
+              <li><a class="block px-4 py-2 hover:bg-gray-100 <%= page === '/userHistory' ? 'font-bold' : '' %>" href="/userHistory">User History</a></li>
+              <li><a class="block px-4 py-2 hover:bg-gray-100" href="/logout">Logout</a></li>
+            </ul>
+          </details>
+        <% } else { %>
+          <details class="relative">
+            <summary class="cursor-pointer">Account</summary>
+            <ul class="absolute right-0 bg-white shadow-md rounded-md mt-1 w-32 z-10">
+              <li><a class="block px-4 py-2 hover:bg-gray-100 <%= page === '/login' ? 'font-bold' : '' %>" href="/login">Login</a></li>
+              <li><a class="block px-4 py-2 hover:bg-gray-100 <%= page === '/register' ? 'font-bold' : '' %>" href="/register">Register</a></li>
+            </ul>
+          </details>
+        <% } %>
+      </div>
     </div>
-</nav>
+  </nav>
+  
